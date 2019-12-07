@@ -1,0 +1,88 @@
+#serverTable {
+    table-layout: auto;
+    float: left;
+    overflow-y: auto;
+    overflow-x: auto;
+    display: block;
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+.fa-vc {
+    line-height: inherit !important;
+    cursor: pointer;
+}
+.cardIcon {
+    vertical-align: bottom;
+}
+
+
+#serverTableCard {
+    width: auto;
+}
+/*table thead tr {
+    text-decoration:underline;
+    cursor: pointer;
+    background-color: lightslategrey;
+}*/
+#configCols {
+    cursor: pointer;
+}
+
+.plusMinus {
+    cursor: pointer;
+}
+#serverTable thead tr {
+    cursor: pointer;
+}
+
+th.unsortable {
+    cursor: default;
+}
+
+#serverTable tr:hover {
+    background-color: #ffff99;
+    color: black;
+}
+
+#serverTable tr.active {
+    border-left: 2px solid #007aeb;
+    border-right: 2px solid #007aeb;
+}
+#serverTable tr.active td {
+    /*background-color: #007bff !important;*/
+    background-color: #007aeb;
+    color: #fff;
+    border-top: 2px solid #007aeb;
+    border-bottom: 2px solid #007aeb;
+    
+}
+
+.table-hover > tbody > tr.select-row:hover > td,
+.clsSubServerList > td {
+    background-color: white;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+#labelInfo {
+    font-weight: bold;
+}
+
+/*#refreshCheck {
+    align-content:center;
+    padding: 20px;
+}*/
+
+#supportissues {
+    color: red;
+    align-content: center;
+}
+
+/*#yellowBoxes {
+    color: red;
+    font-weight: 800;
+}*/

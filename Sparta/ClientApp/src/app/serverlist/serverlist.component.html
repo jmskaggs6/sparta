@@ -1,0 +1,75 @@
+<div class="card border-dark mb-0" style="display:inline-block;" id="accordionServer">
+    <div *ngIf="!serverLstSrv.isLoading; else loading">
+        <!-- Header-->
+        <div class="card-header" id="serverHeading">
+            <div class="cardTitle">
+                <h5>
+                    {{cardTitle}}
+                    <i [ngClass]="getHeaderClass()" data-toggle="collapse" href="#collapseServerTable" (click)="expanded = !expanded"></i>
+                </h5>
+            </div>
+        </div>
+        <!--End of card header -->
+        <!--Server table-->
+        <div class="collapse" id="collapseServerTable" data-parent="#accordionServer">
+            <div class="card-body p-0">
+                <div class="col-12 mt-1">
+                    <button type="button" data-toggle="collapse" href="#filterServer"><i class="fa fa-filter" aria-hidden="true"></i></button>
+                    <span class="ml-2"><label>Last Refresh:&nbsp;&nbsp;{{ lastRefresh | date:'medium' }}</label></span>
+                    <mat-checkbox class="ml-4" color="warn" id="yellowBoxes" [(ngModel)]="filterYellowBox"
+                                  (change)="filterByYellowBox()" matTooltip="Filter on servers">
+                        Servers w/issues: {{serversWithIssues || 0}}
+                    </mat-checkbox>
+                    <span matTooltip="Configure columns" class="ml-5" (click)="openConfigDialog()">
+                        <i id="configCols" class="fa fa-align-justify" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="col-12 mt-1 collapse" id="filterServer">
+                    <server-navigator></server-navigator>
+                    <server-navigator [notIn]="true" class="ml-1"></server-navigator>
+                </div>
+
+                <div class="col-12 mt-1">
+                    <table id="serverTable" class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th *ngFor="let col of serverCols; let i=index"
+                                    (click)="setSort(i)"
+                                    [ngClass]="{'unsortable': !col.Sortable}"
+                                    matTooltip={{col.toolTip}}>
+                                    {{col.caption}}<span [ngClass]="getSortClass(i)"></span>
+                                </th>
+                                <th></th> <!-- Connect button -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let server of sortSrv.sortObject(serverList, currentSortColName, isAsc); let i=index" trackBy="trackByFnc"
+                                [ngClass]="{'table-danger': server.yellowBox}" (click)="setClickedRow(i, server?.serverID)" [class.active]="i == selectedRow">
+                                <td *ngFor="let col of serverCols; let i=index">
+                                    <div *ngIf="col.colName == 'serverID'" class="dropdrown">
+                                        {{server?.serverID}}
+                                        <button class="btn btn-secondary ml-1 dropdown-toggle float-right" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false" matTooltip="Actions"></button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <button class="dropdown-item" (click)="postServerCmd(server?.serverID, 'continue')" type="button">Send continue</button>
+                                            <button class="dropdown-item" [routerLink]="['/events', server?.advServerID]">View details</button>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="col.colName !== 'serverID'">{{ server[col.colName] }}</div>
+                                </td>
+                                <td><button class="btn btn-secondary" (click)="openConnect()"><i class="fa fa-handshake-o" aria-hidden="true"></i></button></td>
+                            </tr>
+                        </tbody> <!-- Table body -->
+                    </table> <!--Server list table-->
+                    </div>
+                </div> <!-->card -->
+            </div>
+    </div>
+    <ng-template #loading>
+        <div class="p-1" style="text-align:center;">
+            <mat-spinner></mat-spinner>
+            <div><h5>Loading servers...</h5></div>
+        </div>
+    </ng-template>
+</div>

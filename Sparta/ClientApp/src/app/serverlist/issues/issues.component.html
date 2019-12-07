@@ -1,0 +1,75 @@
+<div class="card border-dark mb-0 mt-1" style="display:inline-block;" id="issueAccordion">
+    <div *ngIf="issuesData as issues; else loading">
+        <!-- Issue card -->
+        <div [ngClass]="issueCount > 0 ? 'card-header bg-danger text-white': 'card-header'" id="issueHeading">
+            <div class="cardTitle">
+                <h5>
+                    Issues ({{issueCount | number}})
+                    <i [ngClass]="getHeaderClass()" data-toggle="collapse" href="#collapseIssueTable" (click)="expanded = !expanded"></i>
+                </h5>
+            </div>
+            
+        </div>
+        <div class="collapse" id="collapseIssueTable" data-parent="#issueAccordion">
+            <div class="card-body">
+                <button mat-raised-button color="primary" class="mb-2 mt-0" (click)="deleteSelected()">Delete selected</button>
+                <button mat-raised-button color="primary" class="mb-2 mt-0 ml-2" (click)="refreshIssues()">
+                    Refresh <span *ngIf="issueCount != issues.length">(New Items available)</span>
+                </button>
+                <i *ngIf="isRefreshing" class="fa fa-spinner fa-spin"></i>
+                <span *ngIf="!isRefreshing" class="ml-2">Last refresh: {{ lastRefresh | date:'medium'}}</span>
+                <h5>Filter:</h5>
+                <select class="mb-1" [(value)]="serverFilter" onchange="selectChange($event)">
+                    <option>Show all</option>
+                    <option *ngFor="let server of serversWithIssues" value="server">
+                        {{server}}
+                    </option>
+                </select>
+
+
+                <table class="table" id="issueTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th><mat-checkbox (change)="selectAll($event)"></mat-checkbox></th>
+                            <th></th>
+                            <th *ngFor="let col of tableCols; let i=index"
+                                (click)="setSort(i)"
+                                [ngClass]="{'unsortable': !col.Sortable}"
+                                matTooltip={{col.toolTip}}>
+                                {{col.caption}}<span [ngClass]="getSortClass(i)"></span>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let issue of sortSrv.sortObject(issues, currentSortColName, isAsc); let i=index">
+                            <tr>
+                                <td><mat-checkbox [(ngModel)]="issue.recordSelected"></mat-checkbox></td>
+                                <td><button mat-raised-button color="primary" (click)="sendContinue(issue.serverID)">Continue</button></td>
+                                <td *ngFor="let col of tableCols; let i=index">
+                                    {{ isColDateTime(i) ? (issue[col.colName] | date:'medium') : (issue[col.colName]) }}
+                                </td>
+                                <td><button mat-raised-button color="primary" (click)="loadYellowBox(issue.serverID, issue.fileName, i)">YB</button></td>
+                            </tr>
+                            <tr *ngIf="issue.expanded">
+                                <td id="yellowBox" colspan="5">
+                                    <span *ngIf="issue.yellowBox">{{issue.yellowBox}}</span>
+                                    <div *ngIf="!issue.yellowBox">
+                                        <span>Loading...</span>
+                                        <mat-spinner></mat-spinner>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    </div>
+    <ng-template #loading>
+        <div class="p-1" style="text-align:center;">
+        <mat-spinner></mat-spinner>
+        <div><h5>Loading issues...</h5></div>
+        </div>
+    </ng-template>
+</div>

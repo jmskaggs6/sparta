@@ -1,0 +1,64 @@
+  <div class="card border-dark mb-0" style="display:inline-block;" id="accordionServerV">
+    <div *ngIf="!isLoading; else loading">
+        <!-- Header--> 
+        <div class="card-header" id="serverVHeading"
+             href="#collapseServerVTable">
+            <div class="cardTitle">
+                <h5>
+                {{cardTitle}}
+                <i [ngClass]="getHeaderClass()" data-toggle="collapse" href="#collapseServerVTable" (click)="expanded = !expanded"></i>
+                </h5>
+            </div>
+        </div>
+        <!--End of card header -->
+        <!--Server table-->
+        <div class="collapse" id="collapseServerVTable" data-parent="#accordionServerV">
+            <div class="card-body p-0">
+                <button mat-raised-button color="primary" class="mt-1 mb-1 ml-1" (click)="clearFilter()">Clear filter</button>
+                <table id="serverVTable" class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th *ngFor="let col of tableCols; let i=index"
+                                (click)="setSort(i)"
+                                [ngClass]="{'unsortable': !col.Sortable}"
+                                matTooltip={{col.toolTip}}>
+                                {{col.caption}}<span [ngClass]="getSortClass(i)"></span>
+                            </th>
+                       </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-info p-0">
+                            <td *ngFor="let col of tableCols; let i=index" class="align-middle">
+                                <div *ngIf="isComboFilter(col)">
+                                    <mat-form-field>
+                                        <mat-select placeholder="Select {{col.caption}}" [(ngModel)]="col.filterValue" (selectionChange)="setFilter()">
+                                            <mat-option [value]="">Show all</mat-option>
+                                            <mat-option *ngFor="let filter of col.filterValues" [value]="filter">
+                                                {{filter}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                
+                            </td>
+                        </tr>
+                        <tr *ngFor="let version of sortSrv.sortObject(serverVersions, currentSortColName, isAsc); let i=index" trackBy="trackByFnc"
+                            [class.active]="i == selectedRow" click="setRow(i)">
+                            <td *ngFor="let col of tableCols; let i=index">
+                                {{ version[col.colName] }}
+                            </td>
+                        </tr>
+                    </tbody> <!-- Table body -->
+                </table> <!--Server list table-->
+            </div> <!-->card -->
+        </div>
+        
+    </div>
+    <ng-template #loading>
+        <div class="p-1" style="text-align:center;">
+            <mat-spinner></mat-spinner>
+            <div><h5>Loading versions...</h5></div>
+        </div>
+    </ng-template>
+    
+</div>

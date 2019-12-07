@@ -1,0 +1,21 @@
+
+#issueTable {
+    width:100%;
+}
+.cardSmall {
+    cursor: pointer;
+    
+}
+
+.card-header {
+    width: 100%;
+    
+}
+.cardBig {
+    
+}
+
+.fa-vc {
+    line-height: inherit !important;
+    cursor: pointer;
+}

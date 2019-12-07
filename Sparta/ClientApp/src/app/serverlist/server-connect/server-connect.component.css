@@ -1,0 +1,28 @@
+/*.tblConnect {
+    border-collapse: collapse;
+    border: none;
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+}
+
+.tblConnect td {
+    font-size: 75%;
+}
+
+
+.table-hover > tbody > tr.select-row:hover > td,
+.no-select > td {
+    background-color: white;
+}*/
+
+.field_set {
+    border-style: solid;
+    border-width: 1px;
+}
+
+input[type=text] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

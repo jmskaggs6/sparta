@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Configure Columns</h1>
+<div mat-dialog-content>
+    <div><button mat-button (click)="selectAll()">Set all</button>
+    <button class="ml-1 mb-3" mat-button  (click)="clearAll()">Clear all</button></div>
+    <div *ngFor="let col of colToConfig">
+        <mat-checkbox [(ngModel)]="col.visible">{{col.tableColumns.caption}}</mat-checkbox>
+    </div>
+</div>
+<div mat-dialog-actions align="center">
+    <!--<button mat-button [mat-dialog-close]="data.columns">Close</button>-->
+    <!--<button mat-button [mat-dialog-close]="data.colToConfig">Ok</button>-->
+    <button mat-button (click)="onClick()">Close</button>
+</div>

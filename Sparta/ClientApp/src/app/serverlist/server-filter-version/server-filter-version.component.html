@@ -1,0 +1,8 @@
+<mat-form-field class="mt-2">
+    <mat-select placeholder="Select {{labelInfo}} version" [(ngModel)]="selected" (selectionChange)="onChangeVersion()">
+        <mat-option value="">Show all</mat-option>
+        <mat-option *ngFor="let version of sortSrv.sortObject(versionInfo, 'sortV', false); let i = index" [value]="version?.versionNum">
+            <span>{{version?.versionDisplay}}</span><span class="badge badge-primary badge-pill ml-1">{{version?.countV}}</span>
+        </mat-option>
+    </mat-select>
+</mat-form-field>

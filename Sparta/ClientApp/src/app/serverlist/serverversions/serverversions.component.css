@@ -1,0 +1,14 @@
+
+
+.fa-vc {
+    line-height: inherit !important;
+    cursor: pointer;
+}
+
+.card-header {
+    width: 100%;
+}
+
+.filterRow tr:hover {
+    background-color: cornflowerblue !important;
+}

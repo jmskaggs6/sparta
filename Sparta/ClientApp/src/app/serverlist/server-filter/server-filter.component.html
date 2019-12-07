@@ -1,0 +1,9 @@
+<div class="mt-1 p-1">
+    <button class="btn btn-block btn-outline-primary m-a-2" (click)=changeCategory(0) [class.active]="currentCategory==0">
+        Show all
+    </button>
+    <button *ngFor="let cat of categories" class="btn btn-outline-primary btn-block ma-2"
+      (click)=changeCategory(cat.advServerCategoryID) [class.active]="cat.advServerCategoryID==currentCategory" >
+        {{cat.description}}
+    </button>   
+</div>

@@ -1,0 +1,67 @@
+<ng-template [ngIf]="isLoading || serverListConn === undefined">Loading
+    </ng-template>
+<ng-template [ngIf]="!isLoading">
+    <div class="container">
+        <div class="row">
+        <mat-tab-group>
+                <mat-tab label="VPN Connection" class="mt-1">
+                    <div class="col-2">
+                        <label>VPN:</label>
+                        <label>VPN User:</label>
+                        <label>VPN Pass:</label>
+                    </div>
+                    <div class="col-3">
+                        <mat-form-field>
+                            <input matInput placeholder="VPN" type="text" readonly class="ml-1" matTooltip="Click to copy"
+                                   #vpnConnect [value]="serverListConn?.vpnConnect ? serverListConn?.vpnConnect : ''" (click)="copyToClipboard(vpnConnect)" />
+                        </mat-form-field>
+                        <input type="text" readonly class="ml-1" #vpnUser [value]="serverListConn?.vpnUser ? serverListConn?.vpnUser : ''"
+                               (click)="copyToClipboard(vpnUser)" matTooltip="Click to copy" />
+                    
+                        <input type="text" readonly class="ml-1" #vpnPassword [value]="serverListConn?.vpnPassword ? serverListConn?.vpnPassword : ''"
+                               (click)="copyToClipboard(vpnPassword)" matTooltip="Click to copy" />
+                    </div>
+                </mat-tab>
+            
+                <mat-tab label="Windows Connection">
+                    <div class="col-12">
+                        <label>WinDomain:</label>
+                        <input type="text" readonly class="ml-1" matTooltip="Click to copy"
+                               #winDomain [value]="serverListConn?.winDomain ? serverListConn?.winDomain : ''" (click)="copyToClipboard(serverListConn?.winDomain)" />
+                        <label class="ml-1">IP:</label>
+                        <input type="text" readonly class="ml-1" matTooltip="Click to copy"
+                               #winDomain [value]="serverListConn?.rDPInternalIP ? serverListConn?.rDPInternalIP : ''" (click)="copyToClipboard(serverListConn?.rDPInternalIP)" />
+
+                        <label class="ml-1">WinLogon:</label>
+                        <input type="text" readonly class="ml-1" #winLogon [value]="serverListConn?.winLogon ? serverListConn?.winLogon : ''"
+                               (click)="copyToClipboard(serverListConn?.winLogon)" matTooltip="Click to copy" />
+                        <label class="ml-1">WinPass:</label>
+                        <input type="text" readonly class="ml-1" #winPassword [value]="serverListConn?.winPassword ? serverListConn?.winPassword : ''"
+                               (click)="copyToClipboard(serverListConn?.winPassword)" matTooltip="Click to copy" />
+
+                    </div>
+                </mat-tab>>
+            
+                <mat-tab label="Email">
+                    <div class="col-12">
+                        <label>Email1:</label>
+                        <input type="text" readonly class="ml-1" #email1 [value]="serverListConn?.email1 ? serverListConn?.email1 : ''"
+                               (click)="copyToClipboard(email1)" matTooltip="Click to copy" />
+                        <label class="ml-1">Email2:</label>
+                        <input type="text" readonly class="ml-1" #email2 [value]="serverListConn?.email2 ? serverListConn?.email2 : ''"
+                               (click)="copyToClipboard(email2)" matTooltip="Click to copy" />
+                        <label class="ml-1">Email3:</label>
+                        <input type="text" readonly class="ml-1" #email3 [value]="serverListConn?.email3 ? serverListConn?.email3 : ''"
+                               (click)="copyToClipboard(email3)" matTooltip="Click to copy" />
+                        <label class="ml-1">Email4:</label>
+                        <input type="text" readonly class="ml-1" #email4 [value]="serverListConn?.email4 ? serverListConn?.email4 : ''"
+                               (click)="copyToClipboard(email4)" matTooltip="Click to copy" />
+
+                    </div>
+                </mat-tab>
+            
+        </mat-tab-group>
+        </div>
+    </div>
+     
+</ng-template>

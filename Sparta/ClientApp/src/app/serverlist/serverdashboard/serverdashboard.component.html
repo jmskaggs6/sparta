@@ -1,0 +1,27 @@
+<div class="navContent container-fluid" style="height:1000px;min-height:750px;width:auto">
+    <!--Header row-->
+    <!-- Issue row -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <issues></issues> <!-- Issue card-->
+        </div> <!-- column -->
+    </div>
+    <!-- End of issues-->
+    <!-- Server list-->
+    <div class="row mb-3">
+        <div class="col-12">
+            <serverlist></serverlist>
+        </div> <!-- column -->
+
+    </div> <!--row-->
+    <div class="row">
+        <div class="col-12">
+            <serverversions></serverversions>
+        </div>
+    </div>
+    <button id="scrollButton" [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top">
+        Scroll To Top
+    </button>
+</div> <!--navContent-->
+        <!--End of main content-->
+

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { versionInfo } from '../helper/versioninfo';
-import { SortService } from '../../services/sort.service';
+import { SortService } from '../services/sort.service';
 import { MatSelect } from '@angular/material/select';
 
 @Component({

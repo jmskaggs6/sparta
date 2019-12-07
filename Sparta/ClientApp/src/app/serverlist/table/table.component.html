@@ -1,0 +1,20 @@
+<table class="table webTableStyle table-bordered table-hover">
+    <thead>
+        <tr>
+            <th *ngIf="multiRowSelect"></th>
+            <ng-container *ngFor="let col of configurableCols; let i=index">
+                <th (click)="setSort(i)" [ngClass]="{'unsortable': !col.Sortable}" matTooltip={{col.toolTip}}>
+                    {{col.caption}}<span [ngClass]="getSortClass(i)"></span>
+                </th>
+            </ng-container>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of tableData; let i=index">
+            <td *ngIf="multiRowSelect"><input type="checkbox" /></td>
+            <td *ngFor="let col of configurableCols; let j=index">
+                {{ row[col.colName] }}
+            </td>
+        </tr>
+    </tbody>
+</table>

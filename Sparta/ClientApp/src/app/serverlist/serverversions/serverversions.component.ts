@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Repository } from '../../models/repository';
-import { ServerListVersion } from '../../models/serverlist/serverlistversion.model';
+import { Repository } from '../repository';
+import { ServerListVersion } from '../models/serverlistversion.model';
 import {
     ITableColConfigState, SortDirection,
     TableColumnConfig, TableColHepler, DataType, FilterType, ITableConfigState, TableHelper
-} from '../../table/table-column-config';
-import { SortService } from '../../services/sort.service';
-import { JsFuncService } from '../../services/jsfunc.service';
-import { FilterService } from '../../services/filter.service';
+} from '../table/table-column-config';
+import { SortService } from '../services/sort.service';
+import { JsFuncService } from '../services/jsfunc.service';
+import { FilterService } from '../services/filter.service';
 import { ServerListSrv } from '../services/serverlist.service';
 import { Subscription } from 'rxjs';
 

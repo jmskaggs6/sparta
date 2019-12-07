@@ -1,11 +1,11 @@
 import { Injectable, OnInit, OnDestroy } from '@angular/core';
-import { ServerListStartUp } from '../../models/serverlist/serverlist.model';
+import { ServerListStartUp } from '../models/serverlist.model';
 import { Observable, BehaviorSubject, Subscription, interval } from 'rxjs';
 import { switchMap, startWith, tap } from 'rxjs/operators';
-import { Repository } from '../../models/repository';
+import { Repository } from '../repository';
 import { versionInfo } from '../helper/versioninfo';
-import { FilterService } from '../../services/filter.service';
-import { JsFuncService } from '../../services/jsfunc.service';
+import { FilterService } from './filter.service';
+import { JsFuncService } from './jsfunc.service';
 
 @Injectable({
     providedIn: 'root'

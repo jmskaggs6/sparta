@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, Input, Output } from '@angular/core';
-import { Repository } from '../../models/repository';
-import { CPRIssue, CPRIssueCount } from '../../models/serverlist/CPRIssue.model';
+import { Repository } from '../repository';
+import { CPRIssue, CPRIssueCount } from '../models//CPRIssue.model';
 
-import { SortService } from '../../services/sort.service';
-import { TableColumnConfig, SortDirection, ITableColConfigState, TableColHepler, DataType, ITableConfigState, TableHelper } from '../../table/table-column-config';
+import { SortService } from '../services/sort.service';
+import { TableColumnConfig, SortDirection, ITableColConfigState, TableColHepler, DataType, ITableConfigState, TableHelper } from '../table/table-column-config';
 import { Subscription, Observable, interval, pipe, of, forkJoin } from 'rxjs';
 import { switchMap, startWith, map, tap } from 'rxjs/operators';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';

@@ -1,4 +1,4 @@
-import { ServerListStartUp, ServerListUpdate } from '../../models/serverlist/serverlist.model';
+import { ServerListStartUp, ServerListUpdate } from '../models/serverlist.model';
 
 export class UpdateServerList {
     public static update(startUp: ServerListStartUp[], updateArr: ServerListUpdate[]) {

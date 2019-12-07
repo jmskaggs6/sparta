@@ -1,0 +1,14 @@
+.webTableStyle {
+    float: left;
+    width: 100%;
+    border-collapse: collapse;
+  
+}
+
+th.unsortable {
+    cursor: default;
+}
+
+tr {
+    height: 100%;
+}

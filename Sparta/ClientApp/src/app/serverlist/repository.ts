@@ -4,18 +4,18 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError, of} from 'rxjs';
 
-import { AdvServer } from './advserver/AdvServer.model';
-import { ServerCategory } from './advserver/ServerCategory.model';
-import { DetailTypeCodes } from './stats/DetailTypeCodes.model';
-import { StatsDetailType } from './stats/StatsDetailType.model';
-import { AdvFileLinks } from './advserver/AdvFileLinks.model';
-import { AdvEvents } from './advserver/AdvEvents.model';
-import { AdvSubEvents } from './advserver/AdvSubEvents.model';
-import { AdvCrossFoot } from './advserver/AdvCrossFoot.model';
-import { CPRIssue, CPRIssueYellowBox } from './serverlist/CPRIssue.model';
-import { ServerListStartUp, serverCommand, ServerListUpdate } from './serverlist/serverlist.model';
-import { ServerConnect } from './serverlist/serverconnect.model';
-import { ServerListVersion } from './serverlist/serverlistversion.model';
+import { AdvServer } from './models/AdvServer.model';
+import { ServerCategory } from './models/ServerCategory.model';
+import { DetailTypeCodes } from './models/DetailTypeCodes.model';
+import { StatsDetailType } from './models/StatsDetailType.model';
+import { AdvFileLinks } from './models/AdvFileLinks.model';
+import { AdvEvents } from './models/AdvEvents.model';
+import { AdvSubEvents } from './models/AdvSubEvents.model';
+import { AdvCrossFoot } from './models/AdvCrossFoot.model';
+import { CPRIssue, CPRIssueYellowBox } from './models/CPRIssue.model';
+import { ServerListStartUp, serverCommand, ServerListUpdate } from './models/serverlist.model';
+import { ServerConnect } from './models/serverconnect.model';
+import { ServerListVersion } from './models/serverlistversion.model';
 
 import { catchError } from 'rxjs/operators';
 

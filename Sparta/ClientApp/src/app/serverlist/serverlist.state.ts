@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { SortDirection, ITableColConfigState, TableColumnConfig } from '../table/table-column-config';
+import { SortDirection, ITableColConfigState, TableColumnConfig } from './table/table-column-config';
 
 @Injectable({
     providedIn: 'root'

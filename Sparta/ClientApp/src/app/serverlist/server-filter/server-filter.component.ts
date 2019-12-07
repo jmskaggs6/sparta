@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Repository } from '../../models/repository';
-import { ServerCategory } from '../../models/advserver/ServerCategory.model';
+import { Repository } from '../repository';
+import { ServerCategory } from '../models/ServerCategory.model';
 import { ServerListSrv } from '../services/serverlist.service';
 
 @Component({

@@ -6,6 +6,10 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ServerListComponent } from './serverlist/serverlist.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ServerlistModule } from './serverlist/serverlist.module';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,10 @@ import { ServerListComponent } from './serverlist/serverlist.component';
     RouterModule.forRoot([
       { path: '', component: ServerListComponent, pathMatch: 'full' },
       { path: 'serverlist', component: ServerListComponent }
-    ])
+    ]),
+    BrowserAnimationsModule,
+    MaterialModule,
+    ServerlistModule
   ],
   providers: [],
   bootstrap: [AppComponent]

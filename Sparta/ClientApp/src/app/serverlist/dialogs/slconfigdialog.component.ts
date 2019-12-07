@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ITableColConfigState } from '../../table/table-column-config';
+import { ITableColConfigState } from '../table/table-column-config';
 
 @Component({
     selector: 'slconfigdialog',

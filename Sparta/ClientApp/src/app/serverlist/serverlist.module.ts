@@ -20,9 +20,10 @@ import { JsFuncService } from './services/jsfunc.service';
 import { Repository } from './repository';
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule,
+    CommonModule
+  ],
+  declarations: [
     ServerListConfigDialog,
     ServerConnectDialog,
     ServerConnectComponent,

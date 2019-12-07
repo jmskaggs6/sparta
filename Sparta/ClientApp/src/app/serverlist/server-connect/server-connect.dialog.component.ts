@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ServerConnect } from '../../models/serverlist/serverconnect.model';
+import { ServerConnect } from '../models/serverconnect.model';
 
 @Component({
     selector: 'server-connect-dialog',

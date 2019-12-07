@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
-import { ServerConnect } from '../../models/serverlist/serverconnect.model';
+import { ServerConnect } from '../models/serverconnect.model';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { Repository } from '../../models/repository';
+import { Repository } from '../repository';
 import { Subscriber, Subscription, pipe } from 'rxjs';
 
 @Component({

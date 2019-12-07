@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ServerListConfigDialog } from './dialogs/slconfigdialog.component';
+import { MaterialModule } from './material.module';
+import { FormsModule } from '@angular/forms';
 
+import { ServerListComponent } from './serverlist.component';
+
+import { ServerListConfigDialog } from './dialogs/slconfigdialog.component';
 import { ServerConnectDialog } from './server-connect/server-connect.dialog.component';
 import { ServerConnectComponent} from './server-connect/server-connect.component';
 import { WebTableComponent } from './table/table.component';
@@ -21,7 +25,12 @@ import { Repository } from './repository';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    FormsModule
+  ],
+  exports: [
+    ServerListComponent
   ],
   declarations: [
     ServerListConfigDialog,
@@ -34,7 +43,8 @@ import { Repository } from './repository';
     ServerNavigatorComponent,
     ServerDashBoardComponent,
     ServerVersionsComponent,
-    ConfirmedDialog
+    ConfirmedDialog,
+    ServerListComponent
   ],
   providers: [
     SortService,

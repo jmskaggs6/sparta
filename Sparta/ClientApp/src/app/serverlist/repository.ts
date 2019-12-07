@@ -19,33 +19,33 @@ import { ServerListVersion } from './models/serverlistversion.model';
 
 import { catchError } from 'rxjs/operators';
 
-const serversUrl = '/api/servers';
-const serverListUrl = '/api/serverListStartup';
-const serverListConnect = '/api/cpr/connect';
-const serverListUpdate = '/api/serverListStartup/update';
-//const serverListStateUrl = '/api/serverListState';
+const serversUrl = 'http://test.inventiv.com/api/servers';
+const serverListUrl = 'http://test.inventiv.com/api/serverListStartup';
+const serverListConnect = 'http://test.inventiv.com/api/cpr/connect';
+const serverListUpdate = 'http://test.inventiv.com/api/serverListStartup/update';
+//const serverListStateUrl = 'http://test.inventiv.com/api/serverListState';
 
-const serverCategoryUrl = '/api/category';
-const serverNameUrl = '/api/servers/name';
+const serverCategoryUrl = 'http://test.inventiv.com/api/category';
+const serverNameUrl = 'http://test.inventiv.com/api/servers/name';
 
-const detailTypeCodesUrl = '/api/statsDetail/getCodes';
-const detailStatsUrl = '/api/statsDetail/getStats';
+const detailTypeCodesUrl = 'http://test.inventiv.com/api/statsDetail/getCodes';
+const detailStatsUrl = 'http://test.inventiv.com/api/statsDetail/getStats';
 
-const eventsUrl = '/api/advEvents';
-const eventsLatestUrl = '/api/advEvents/Latest';
-const eventTypesUrl = '/api/advEvents/eventTypes';
+const eventsUrl = 'http://test.inventiv.com/api/advEvents';
+const eventsLatestUrl = 'http://test.inventiv.com/api/advEvents/Latest';
+const eventTypesUrl = 'http://test.inventiv.com/api/advEvents/eventTypes';
 
-const crossFootUrl = '/api/advCrossfoot';
-const subEventsUrl = '/api/advSubEvents';
-const fileLinkUrl = '/api/fileLink';
+const crossFootUrl = 'http://test.inventiv.com/api/advCrossfoot';
+const subEventsUrl = 'http://test.inventiv.com/api/advSubEvents';
+const fileLinkUrl = 'http://test.inventiv.com/api/fileLink';
 
-const cprIssuesUrl = '/api/cpr/issues';
-const cprIssuesCountUrl = '/api/cpr/issues/count';
-const cprIssuesYBUrl = '/api/cpr/issues/yellowBox';
+const cprIssuesUrl = 'http://test.inventiv.com/api/cpr/issues';
+const cprIssuesCountUrl = 'http://test.inventiv.com/api/cpr/issues/count';
+const cprIssuesYBUrl = 'http://test.inventiv.com/api/cpr/issues/yellowBox';
 
-const cprServerCmd = '/api/serverCmd';
+const cprServerCmd = 'http://test.inventiv.com/api/serverCmd';
 
-const cprServerLstVersion = '/api/serverListVersion';
+const cprServerLstVersion = 'http://test.inventiv.com/api/serverListVersion';
 
 @Injectable({
     providedIn: 'root'

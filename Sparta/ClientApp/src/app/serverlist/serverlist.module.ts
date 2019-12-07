@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { ServerListComponent } from './serverlist.component';
 
@@ -27,7 +28,8 @@ import { Repository } from './repository';
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     ServerListComponent

@@ -9,10 +9,14 @@ import { ServerFilterVersion } from './server-filter-version/server-filter-versi
 import { ServerListConfigDialog } from './dialogs/slconfigdialog.component';
 import { ConfirmedDialog } from './dialogs/confirm/confirmdialog.component';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
-import { ServerListState, ServerListPersist, ServerColumnState } from './serverlist.state';
-import { Subscription, timer ,  interval } from 'rxjs';
+//import { ServerListState, ServerListPersist, ServerColumnState } from './serverlist.state';
+import { Subscription, timer ,  interval, Observable } from 'rxjs';
 import { ServerConnectDialog } from './server-connect/server-connect.dialog.component';
 import { ServerListSrv } from './services/serverlist.service';
+
+import { FetchAllServers } from './state/serverlist.action';
+import { ServerListState } from './state/serverlist.state';
+import { Select } from '@ngxs/store';
 
 @Component({
     selector: 'serverlist',
@@ -25,8 +29,9 @@ export class ServerListComponent implements OnInit, OnDestroy {
     public expanded: boolean = false;
 
     @ViewChildren(ServerFilterVersion) versionFilters: QueryList<ServerFilterVersion>
-
-    serverListPersist: ServerListPersist[] = [];
+    @Select(ServerListState.getServerList) serverListPersist$: Observable<ServerListStartUp[]>;
+    @Select(ServerListState
+    //serverListPersist: ServerListPersist[] = [];
 
     isLoading: boolean = false;
     

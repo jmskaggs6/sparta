@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { NgxsModule } from '@ngxs/store';
+import { ServerListState } from './serverlist/state/serverlist.state';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +18,7 @@ import { ServerlistModule } from './serverlist/serverlist.module';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    NgxsModule.forRoot([ServerListState]),
     HttpClientModule,
     FormsModule,
     AppRoutingModule,

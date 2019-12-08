@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxsModule } from '@ngxs/store';
+import { ServerListState } from './state/serverlist.state';
 
 import { Store } from '@ngxs/store';
 
@@ -28,6 +30,7 @@ import { Repository } from './repository';
 
 @NgModule({
   imports: [
+    NgxsModule.forFeature([ServerListState]),
     CommonModule,
     MaterialModule,
     FormsModule,

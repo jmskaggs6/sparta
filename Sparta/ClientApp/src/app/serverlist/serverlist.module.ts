@@ -4,6 +4,8 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { Store } from '@ngxs/store';
+
 import { ServerListComponent } from './serverlist.component';
 
 import { ServerListConfigDialog } from './dialogs/slconfigdialog.component';

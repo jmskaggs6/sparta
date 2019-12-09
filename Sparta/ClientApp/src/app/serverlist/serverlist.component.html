@@ -1,5 +1,5 @@
 <div class="card border-dark mb-0" style="display:inline-block;" id="accordionServer">
-    <div *ngIf="(serverList$ | async); else loading">
+    <div *ngIf="serverList$ | async as serverList; else loading">
         <!-- Header-->
         <div class="card-header" id="serverHeading">
             <div class="cardTitle">
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-12 mt-1 collapse" id="filterServer">
-                    <!--<server-navigator></server-navigator>-->
+                    <server-navigator></server-navigator>
                     <server-navigator [notIn]="true" class="ml-1"></server-navigator>
                 </div>
 
@@ -40,11 +40,11 @@
                                     matTooltip={{col.toolTip}}>
                                     {{col.caption}}<span [ngClass]="getSortClass(i)"></span>
                                 </th>
-                                <th></th> <!-- Connect button -->
+                                <th></th> 
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let server of sortSrv.sortObject((serverList$ | async), (serverListSortCol$ | async), isAsc); let i=index" trackBy="trackByFnc"
+                        <!--<tbody>
+                            <tr *ngFor="let server of sortSrv.sortObject((serverList | async), (serverListSortCol$ | async), isAsc); let i=index" trackBy="trackByFnc"
                                 [ngClass]="{'table-danger': server.yellowBox}" (click)="setClickedRow(i, server?.serverID)" [class.active]="i == selectedRow">
                                 <td *ngFor="let col of (serverListCols$ | async); let i=index">
                                     <div *ngIf="col.colName == 'serverID'" class="dropdrown">
@@ -60,10 +60,10 @@
                                 </td>
                                 <td><button class="btn btn-secondary" (click)="openConnect()"><i class="fa fa-handshake-o" aria-hidden="true"></i></button></td>
                             </tr>
-                        </tbody> <!-- Table body -->
-                    </table> <!--Server list table-->
+                        </tbody>-->
+                    </table> 
                     </div>
-                </div> <!-->card -->
+                </div>
             </div>
     </div>
     <ng-template #loading>

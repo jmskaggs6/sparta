@@ -60,6 +60,9 @@ export class ServerListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.store.dispatch(new FetchAllServers());
+        console.log('test');
+        console.log(this.serverListCols$.subscribe(x => x.forEach(y => console.log(y))));
+
         //this._serverTableConfig = { tableColConfig: this.serverListCols$, currentSortCol: 0, currentSortColName: this.serverListSortCol };
         //this._loadState();
         
@@ -107,11 +110,12 @@ export class ServerListComponent implements OnInit, OnDestroy {
     }
 
     get cardTitle(): string {
-        if (this.serverLstSrv.isFiltered) {
-            return `Server List (${this.serversFiltered.length}) *Filtered`;
-        } else {
-            return `Server List (${this.serversFiltered.length})`;
-        }
+        return "Test";
+        //if (this.serverLstSrv.isFiltered) {
+        //    return `Server List (${this.serversFiltered.length}) *Filtered`;
+        //} else {
+        //    return `Server List (${this.serversFiltered.length})`;
+        //}
     }
 
     get isAsc(): boolean {
@@ -209,7 +213,7 @@ export class ServerListComponent implements OnInit, OnDestroy {
         return true;//return this.serverListColumns.find(name => name.tableColumns.colName == colName).visible;
     }
 
-    public setClickedRow(i, serverId) {
+    public setClickedRow(i, serverId: string) {
         this.selectedRow = i;
         this.selectedServer = serverId;
     }

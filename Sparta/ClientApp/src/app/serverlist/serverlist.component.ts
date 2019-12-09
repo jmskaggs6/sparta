@@ -16,7 +16,7 @@ import { ServerListSrv } from './services/serverlist.service';
 
 import { FetchAllServers } from './state/serverlist.action';
 import { ServerListState } from './state/serverlist.state';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 
 @Component({
     selector: 'serverlist',
@@ -30,7 +30,8 @@ export class ServerListComponent implements OnInit, OnDestroy {
 
     @ViewChildren(ServerFilterVersion) versionFilters: QueryList<ServerFilterVersion>
     @Select(ServerListState.getServerList) serverListPersist$: Observable<ServerListStartUp[]>;
-    @Select(ServerListState
+    @Select(ServerListState.getServerListColumns) serverListCols: ITableColConfigState[];
+    @Select(ServerListState.getServerListSortCol) serverListSortCol: string;
     //serverListPersist: ServerListPersist[] = [];
 
     isLoading: boolean = false;
@@ -52,12 +53,12 @@ export class ServerListComponent implements OnInit, OnDestroy {
     constructor(private repo: Repository, private router: Router, private filterSrv: FilterService,
         public sortSrv: SortService, private confirmDialog: MatDialog, public serverLstState: ServerListState,
         private configDialog: MatDialog, private connectDialog: MatDialog, public serverLstSrv: ServerListSrv,
-        private ref: ChangeDetectorRef) {
+        private ref: ChangeDetectorRef, private store: Store) {
        
     }
 
     ngOnInit() {
-        this._serverTableConfig = { tableColConfig: ServerColumnState.getColumns(), currentSortCol: 0, currentSortColName: "serverID" };
+        this._serverTableConfig = { tableColConfig: this.serverListCols, currentSortCol: 0, currentSortColName: this.serverListSortCol };
         //this._loadState();
         
         this._lastRefreshSub = this.serverLstSrv.lastRefresh.subscribe(result => {
@@ -161,6 +162,7 @@ export class ServerListComponent implements OnInit, OnDestroy {
         dialogRef.afterClosed().subscribe(close => {
             
             ServerColumnState.saveColumns(this.serverListColumns);
+            this.store.dispatch()
             this._refreshData();
         })
     }

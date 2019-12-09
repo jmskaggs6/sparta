@@ -1,5 +1,5 @@
 <div class="card border-dark mb-0" style="display:inline-block;" id="accordionServer">
-    <div *ngIf="!serverLstSrv.isLoading; else loading">
+    <div *ngIf="(serverList$ | async); else loading">
         <!-- Header-->
         <div class="card-header" id="serverHeading">
             <div class="cardTitle">
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-12 mt-1 collapse" id="filterServer">
-                    <server-navigator></server-navigator>
+                    <!--<server-navigator></server-navigator>-->
                     <server-navigator [notIn]="true" class="ml-1"></server-navigator>
                 </div>
 
@@ -34,7 +34,7 @@
                     <table id="serverTable" class="table table-bordered table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th *ngFor="let col of serverCols; let i=index"
+                                <th *ngFor="let col of (serverListCols$ | async); let i=index"
                                     (click)="setSort(i)"
                                     [ngClass]="{'unsortable': !col.Sortable}"
                                     matTooltip={{col.toolTip}}>
@@ -44,9 +44,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let server of sortSrv.sortObject(serverList, currentSortColName, isAsc); let i=index" trackBy="trackByFnc"
+                            <tr *ngFor="let server of sortSrv.sortObject((serverList$ | async), (serverListSortCol$ | async), isAsc); let i=index" trackBy="trackByFnc"
                                 [ngClass]="{'table-danger': server.yellowBox}" (click)="setClickedRow(i, server?.serverID)" [class.active]="i == selectedRow">
-                                <td *ngFor="let col of serverCols; let i=index">
+                                <td *ngFor="let col of (serverListCols$ | async); let i=index">
                                     <div *ngIf="col.colName == 'serverID'" class="dropdrown">
                                         {{server?.serverID}}
                                         <button class="btn btn-secondary ml-1 dropdown-toggle float-right" type="button" id="dropdownMenu2" data-toggle="dropdown"

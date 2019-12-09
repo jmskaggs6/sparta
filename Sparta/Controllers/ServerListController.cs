@@ -18,10 +18,12 @@ namespace Sparta.Controllers
 
         }
 
+        [HttpGet]
         public async Task<ActionResult<ServerListStartup>> GetServerListStart()
         {
             var servers = await _serverListRepo.GetServerListStartUp();
             return Ok(servers);
         }
+        
     }
 }

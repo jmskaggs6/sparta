@@ -10,11 +10,11 @@ import { ServerListConfigDialog } from './dialogs/slconfigdialog.component';
 import { ConfirmedDialog } from './dialogs/confirm/confirmdialog.component';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 //import { ServerListState, ServerListPersist, ServerColumnState } from './serverlist.state';
-import { Subscription, timer ,  interval, Observable } from 'rxjs';
+import { Subscription, timer ,  interval, Observable, BehaviorSubject } from 'rxjs';
 import { ServerConnectDialog } from './server-connect/server-connect.dialog.component';
 import { ServerListSrv } from './services/serverlist.service';
 
-import { FetchAllServers } from './state/serverlist.action';
+import { FetchAllServers, SetServerListCols, SetServerListFilter } from './state/serverlist.action';
 import { ServerListState } from './state/serverlist.state';
 import { Select, Store } from '@ngxs/store';
 
@@ -25,13 +25,14 @@ import { Select, Store } from '@ngxs/store';
     providers: [FilterService]
 })
 export class ServerListComponent implements OnInit, OnDestroy {
-    private _serverTableConfig: ITableConfigState;
+    //private _serverTableConfig: ITableConfigState;
     public expanded: boolean = false;
 
     @ViewChildren(ServerFilterVersion) versionFilters: QueryList<ServerFilterVersion>
     @Select(ServerListState.getServerList) serverListPersist$: Observable<ServerListStartUp[]>;
-    @Select(ServerListState.getServerListColumns) serverListCols: ITableColConfigState[];
-    @Select(ServerListState.getServerListSortCol) serverListSortCol: string;
+    @Select(ServerListState.getServerListColumns) serverListCols$: Observable<ITableColConfigState[]>;
+    @Select(ServerListState.getServerListSortCol) serverListSortCol$: Observable<string>;
+    @Select(ServerListState.getServerList) serverList$: Observable<ServerListStartUp[]>;
     //serverListPersist: ServerListPersist[] = [];
 
     isLoading: boolean = false;
@@ -54,22 +55,24 @@ export class ServerListComponent implements OnInit, OnDestroy {
         public sortSrv: SortService, private confirmDialog: MatDialog, public serverLstState: ServerListState,
         private configDialog: MatDialog, private connectDialog: MatDialog, public serverLstSrv: ServerListSrv,
         private ref: ChangeDetectorRef, private store: Store) {
-       
+
     }
 
     ngOnInit() {
-        this._serverTableConfig = { tableColConfig: this.serverListCols, currentSortCol: 0, currentSortColName: this.serverListSortCol };
+        this.store.dispatch(new FetchAllServers());
+        //this._serverTableConfig = { tableColConfig: this.serverListCols$, currentSortCol: 0, currentSortColName: this.serverListSortCol };
         //this._loadState();
         
-        this._lastRefreshSub = this.serverLstSrv.lastRefresh.subscribe(result => {
-            this._lastRefresh = result;
-            this.ref.markForCheck();
-        });
-        this.serverLstSrv.loadData();
-        this.serverLstSrv.serverList.subscribe(result => {
-            this.serversFiltered = result;
-            this.ref.markForCheck();
-        });
+        //this._lastRefreshSub = this.serverLstSrv.lastRefresh.subscribe(result => {
+        //    this._lastRefresh = result;
+        //    this.ref.markForCheck();
+        //});
+        //this.serverLstSrv.loadData();
+        //this.serverLstSrv.serverList.subscribe(result => {
+        //    this.serversFiltered = result;
+        //    this.ref.markForCheck();
+        //});
+        
         this.pollingTimer = interval(30000).subscribe(() => this._refreshData());
     }
 
@@ -77,19 +80,19 @@ export class ServerListComponent implements OnInit, OnDestroy {
     //    this._serverTableConfig.currentSortCol = index;
     //}
 
-    get currentSortCol() {
-        return this._serverTableConfig.currentSortCol;
-    }
+    //get currentSortCol() {
+    //    //return this._serverTableConfig.currentSortCol;
+    //}
     get serverList(): ServerListStartUp[] {
         return this.serversFiltered;
     }
 
-    get currentSortColName(): string {
-        return this._serverTableConfig.currentSortColName;
-    }
-    get serverListColumns(): ITableColConfigState[] {
-        return this._serverTableConfig.tableColConfig;
-    }
+    //get currentSortColName(): string {
+    //    return this._serverTableConfig.currentSortColName;
+    //}
+    //get serverListColumns(): ITableColConfigState[] {
+    //    return this._serverTableConfig.tableColConfig;
+    //}
 
     get isFiltered(): boolean {
         return this.serverLstSrv.isFiltered;
@@ -112,14 +115,14 @@ export class ServerListComponent implements OnInit, OnDestroy {
     }
 
     get isAsc(): boolean {
-        return TableColHepler.isAsc(this.serverListColumns[this.currentSortCol].sortDir);
+        return true;//TableColHepler.isAsc(this.serverListColumns[this.currentSortCol].sortDir);
     }
     //get sortedColumn(): string {
     //    return this.serverListColumns[this.currentSortCol].tableColumns.sortCol;
     //}
-    get serverCols(): TableColumnConfig[] {
-        return this.serverListColumns.filter(cols => cols.visible == true).map(colObj => colObj.tableColumns);
-    }
+    //get serverCols(): TableColumnConfig[] {
+    //    return this.serverListColumns.filter(cols => cols.visible == true).map(colObj => colObj.tableColumns);
+    //}
 
     get serversWithIssues() {
         return this.serverLstSrv.serversWithIssues;
@@ -156,13 +159,13 @@ export class ServerListComponent implements OnInit, OnDestroy {
 
     openConfigDialog() {
         this.pollingTimer.unsubscribe();
-        const dialogRef = this.configDialog.open(ServerListConfigDialog, { data: this.serverListColumns }
+        const dialogRef = this.configDialog.open(ServerListConfigDialog, { data: this.serverListCols$.subscribe(x => x) }
         );
 
         dialogRef.afterClosed().subscribe(close => {
             
-            ServerColumnState.saveColumns(this.serverListColumns);
-            this.store.dispatch()
+            //ServerColumnState.saveColumns(this.serverListColumns);
+            //this.store.dispatch(new SetServerListCols({ payload: this.serverListCols }));
             this._refreshData();
         })
     }
@@ -199,11 +202,11 @@ export class ServerListComponent implements OnInit, OnDestroy {
     //}
 
     public setSort(col: number) {
-        TableHelper.setSort(this._serverTableConfig, col);
+        //TableHelper.setSort(this._serverTableConfig, col);
     }
 
     public isColVisible(colName: string): boolean {
-        return this.serverListColumns.find(name => name.tableColumns.colName == colName).visible;
+        return true;//return this.serverListColumns.find(name => name.tableColumns.colName == colName).visible;
     }
 
     public setClickedRow(i, serverId) {
@@ -212,7 +215,7 @@ export class ServerListComponent implements OnInit, OnDestroy {
     }
 
     public getSortClass(colIndex: number): string {
-        return TableColHepler.getSortClass(this._serverTableConfig.tableColConfig, colIndex);
+        return "";//return TableColHepler.getSortClass(this._serverTableConfig.tableColConfig, colIndex);
         
     }
     

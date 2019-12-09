@@ -23,3 +23,13 @@ export class SetServerListFilter {
   static readonly type = '[ServerListFilter] Set';
   constructor(public payload: any) {}
 }
+
+export class GetServerListSort {
+    static readonly type = '[ServerListSort] Get';
+}
+
+export class SetServerListSort {
+    static readonly type = '[SeverListSort] Set';
+    constructor(public payload: any) {
+    }
+}

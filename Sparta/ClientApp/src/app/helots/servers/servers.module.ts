@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { ServersComponent } from './servers.component';
 import { RouterModule } from '@angular/router';
 import { ServersRoutingModule } from './servers.routing';
+import { ComponentsModule } from '../../components/components.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     imports: [
+        BrowserAnimationsModule,
         CommonModule,
-        ServersRoutingModule
+        FormsModule,
+        ServersRoutingModule,
+        ComponentsModule
     ],
     declarations: [
         ServersComponent,

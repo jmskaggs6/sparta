@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import { ServerListState } from './serverlist/state/serverlist.state';
+import { HelotsModule } from './helots/helots.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,7 +24,8 @@ import { ServerlistModule } from './serverlist/serverlist.module';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ServerlistModule
+    ServerlistModule,
+    HelotsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

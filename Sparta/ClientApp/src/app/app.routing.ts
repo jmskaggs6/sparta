@@ -5,8 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ServersComponent } from './helots/servers/servers.component';
 const routes: Routes =[
-      { path: 'home',      component: ServersComponent },
-      { path: '',          redirectTo: 'home', pathMatch: 'full' }
+      { path: 'servers',      component: ServersComponent },
+      { path: '',          redirectTo: 'servers', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -19,7 +19,7 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forChild(routes)
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy }
@@ -28,5 +28,5 @@ const routes: Routes =[
     RouterModule
   ],
 })
-export class HomeRoutingModule { }
+export class ServersRoutingModule { }
 

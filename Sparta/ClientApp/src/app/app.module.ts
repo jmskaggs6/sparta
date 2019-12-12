@@ -2,30 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 import { ServerListState } from './serverlist/state/serverlist.state';
-import { HelotsModule } from './helots/helots.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing';
 
-import { ServerlistModule } from './serverlist/serverlist.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    SharedModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     NgxsModule.forRoot([ServerListState]),
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ServerlistModule,
-    HelotsModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

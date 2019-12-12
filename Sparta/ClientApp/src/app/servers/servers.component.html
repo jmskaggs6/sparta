@@ -1,0 +1,14 @@
+<a routerLink="/servers">Server List</a>
+<mat-sidenav-container class="side-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+        <h5>Sparta</h5>
+        <mat-nav-list>
+            <a mat-list-item href="#/servers/dashboard"> Servers </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <p><button class="ml-1 mt-1" mat-raised-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button></p>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

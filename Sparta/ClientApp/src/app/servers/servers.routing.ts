@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+//import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ServersComponent } from './servers.component';
@@ -18,7 +18,7 @@ const routes: Routes =[
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
+    //BrowserModule,
     RouterModule.forChild(routes)
   ],
   providers: [

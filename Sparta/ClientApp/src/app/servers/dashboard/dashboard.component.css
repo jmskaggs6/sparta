@@ -1,0 +1,12 @@
+.server-card {
+    height: 700px;
+    overflow: scroll;
+}
+
+.server-table {
+    width: 100%;
+}
+
+.mat-header-row {
+    width: 100px;
+}

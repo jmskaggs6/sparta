@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card server-card">
+                    <div class="card-header" data-background-color="orange">
+                        <h4 class="title">Servers</h4>
+                        <p class="category">Updated at 12/10/2019 8:30 AM</p>
+                        <input matInput type="text" [formControl]="filterServer" placeholder="Filter servers...">
+                        <button mat-button *ngIf="filterServer.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table mat-table [dataSource]="sortSrv.sortObject(serverListFiltered$ | async, sort.active, sort.direction !== 'asc' ? true : false)" class="server-table" (matSortChange)="sortData(event$)" matSort matSortActive="serverName" matSortDisableClear matSortDirection="desc">
+                            <ng-container matColumnDef="serverName">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>ServerId</th>
+                                <td mat-cell *matCellDef="let row">{{row.serverName}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="version">
+                                <th mat-header-cell *matHeaderCellDef>Version</th>
+                                <td mat-cell *matCellDef="let row">{{row.advServV}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="refresh">
+                                <th mat-header-cell *matHeaderCellDef>Last Refresh</th>
+                                <td mat-cell *matCellDef="let row">{{row.lastCheckIn | date:'short'}}</td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="serverCols; sticky: true"></tr>
+                            <tr mat-row class="text-warning " *matRowDef="let row; columns: serverCols; "></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

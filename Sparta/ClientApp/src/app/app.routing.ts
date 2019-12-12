@@ -3,10 +3,10 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ServersComponent } from './helots/servers/servers.component';
 const routes: Routes =[
-      { path: 'servers',      component: ServersComponent },
-      { path: '',          redirectTo: 'servers', pathMatch: 'full' }
+      { path: '',
+      loadChildren: () => import('./servers/servers.module').then(m => m.ServersModule) },
+      { path: '',          redirectTo: '/servers', pathMatch: 'full' }
 ];
 
 @NgModule({
